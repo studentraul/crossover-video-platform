@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="playvideo.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header class="header-bar">
+    <h1><a class="link" href="index.html">Crossover Portal Video</a></h1>
+  </header>
+  <main class="container playvideo">
+    <div data-id="" data-url="" class="video playing">
+      <p class="video__title">[3] How does Node.js work</p>
+      <div class="video__player">
+        <video controls>
+          <source src="videos/nodejs.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video__rating">
+        <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+        <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+        <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+        <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+        <i class="star fa fa-star" aria-hidden="true"></i>
+      </div>
+      <p class="video__description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam inventore omnis, architecto repellat rem culpa commodi consequuntur expedita magnam asperiores nisi molestias aut rerum perspiciatis explicabo obcaecati modi consectetur magni tempore, ipsam quos? Et error dolorem voluptatum ipsum, quis distinctio repellendus eligendi voluptate doloremque! Consequatur magni, veritatis quibusdam a mollitia ad saepe fuga modi officiis ex quo similique sapiente maiores.</p>
+    </div>
+    <div class="related-list">
+      <div data-id="" data-url="" class="video mini">
+        <p class="video__title">[3] How does Node.js work</p>
+        <div class="video__player">
+          <video controls>
+            <source src="videos/nodejs.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video__rating">
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star fa fa-star" aria-hidden="true"></i>
+        </div>
+        <p class="video__description">new to node.js? Check out this video that explains "How does Node work?" new to node.js? Check out this video that
+          explains "How does Node work?"</p>
+      </div>
+
+      <div data-id="" data-url="" class="video mini">
+        <p class="video__title">[3] How does Node.js work</p>
+        <div class="video__player">
+          <video controls>
+            <source src="videos/nodejs.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video__rating">
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star is-colored fa fa-star" aria-hidden="true"></i>
+          <i class="star fa fa-star" aria-hidden="true"></i>
+        </div>
+        <p class="video__description">new to node.js? Check out this video that explains "How does Node work?" new to node.js? Check out this video that
+          explains "How does Node work?"</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    Array.from(document.querySelectorAll('video')).map(video => video.addEventListener('click', function (e) {
+      console.log('video clicked')
+    }))
+  </script>
+</body>
+
+</html>

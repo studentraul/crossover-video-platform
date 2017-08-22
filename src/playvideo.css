@@ -1,0 +1,18 @@
+.playvideo {
+  flex-wrap: nowrap;
+  flex-direction: row;
+  min-width: 1098px;
+}
+.video.playing {
+  width: 900px;
+  height: 430px;
+}
+.video.playing .video__player video{
+  width: 466px;
+  height: 290px;
+  margin: 0 auto;
+}
+
+.related-list {
+  max-width: 160px;
+}
