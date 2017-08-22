@@ -3,9 +3,9 @@ import * as md5 from 'blueimp-md5'
 import {browserHistory} from 'react-router'
 
 export default class Login extends Component {
-  constructor() {
+  constructor(props) {
     super()
-    this.state = { error: '' }
+    this.state = { error: props.location.query.msg ||'' }
   }
   login(event) {
     event.preventDefault()
