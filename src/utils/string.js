@@ -1,4 +1,4 @@
-export const truncateString = (string, size) => {
+export const truncateString = (string = '', size = 0) => {
   if (size >= string.length) return string
   else if (size <= 3) {
     return string.slice(0, size) + '...'

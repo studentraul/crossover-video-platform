@@ -1,6 +1,16 @@
-import { truncateString } from '../utils/string'
+import { truncateString } from '../../utils/string'
 
 describe('Truncate string', () => {
+  test('should empty string when passed undefined to string', () => {
+    expect(
+      truncateString(undefined, 11),
+    ).toBe('')
+  })
+  test('should empty string when passed no args', () => {
+    expect(
+      truncateString(),
+    ).toBe('')
+  })
   test('should return "A-tisket..."', () => {
     expect(
       truncateString('A-tisket a-tasket A green and yellow basket', 11),
