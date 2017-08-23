@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { truncateString } from '../utils/string'
+import { browserHistory } from 'react-router'
+import '../css/video.css'
 
 class VideoHeader extends Component {
   render() {
@@ -44,23 +46,38 @@ class VideoRating extends Component {
 
 class VideoInfo extends Component {
   render() {
+    const text = this.props.truncate ? truncateString(this.props.video.description, 110) : this.props.video.description
     return (
       <p className="video__description">
-        {truncateString(this.props.video.description, 110)}
+        {text}
       </p>
     )
   }
 }
 
 export default class Video extends Component {
+  openVideo() {
+    browserHistory.push(`/watch/${this.props.video._id}`)
+  }
+
   render() {
+    const mini = this.props.mini
+
     return (
-      <div data-url="" className="video mini">
+      <div
+        data-url=""
+        className={`video ${mini ? 'mini' : ''}`}
+        onClick={mini ? this.openVideo.bind(this) : null}
+      >
         <VideoHeader video={this.props.video} />
-        <VideoPlayer video={this.props.video} />
+        <VideoPlayer video={this.props.video} preload={mini ? 'none' : ''}/>
         <VideoRating video={this.props.video} />
-        <VideoInfo video={this.props.video} />
+        <VideoInfo video={this.props.video} truncate={mini}/>
       </div>
     )
   }
+}
+
+Video.defaultProps = {
+  mini: true
 }

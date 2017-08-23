@@ -1,0 +1,58 @@
+.video {
+  width: 900px;
+  height: 430px;
+  padding: 1rem .625rem;
+  margin: 1rem .625rem;
+  border: 1px #cfcfcf solid;
+  border-radius: 3px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+
+.video.mini {
+  height: 255px;
+  width: 210px;
+  cursor: pointer;
+}
+
+/* Title */
+.video__title {
+  text-align: center;
+}
+
+/* Player */
+.video .video__player{
+  display: flex;
+}
+
+.video .video__player video {
+  align-self: center;
+  width: 466px;
+  height: 290px;
+  margin: 0 auto;
+}
+
+.video.mini .video__player video {
+  width: 185px;
+  height: 115px;
+}
+
+/* Ratting */
+.video__rating {
+  padding: .5rem .3rem;
+}
+.video__rating .fa.is-colored {
+  color: #f9bc39;
+}
+
+/* Description */
+.video .video__description {
+  font-size: 1rem;
+}
+
+.video.mini .video__description {
+  font-size: .8rem;
+}
