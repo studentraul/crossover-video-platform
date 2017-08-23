@@ -1,15 +1,11 @@
-import { truncateString } from '../../utils/string'
+import { truncateString, cleanVideoName } from '../../utils/string'
 
 describe('Truncate string', () => {
   test('should empty string when passed undefined to string', () => {
-    expect(
-      truncateString(undefined, 11),
-    ).toBe('')
+    expect(truncateString(undefined, 11)).toBe('')
   })
   test('should empty string when passed no args', () => {
-    expect(
-      truncateString(),
-    ).toBe('')
+    expect(truncateString()).toBe('')
   })
   test('should return "A-tisket..."', () => {
     expect(
@@ -43,4 +39,14 @@ describe('Truncate string', () => {
   test('should return "Ab...".', () => {
     expect(truncateString('Absolutely Longer', 2)).toBe('Ab...')
   })
+})
+
+describe('Remove [n] from title', () => {
+  test('should return "Getting Started With ReactJs" when passed "[0] Getting Started With ReactJs"', () => {
+    expect(cleanVideoName('[0] Getting Started With ReactJs')).toBe('Getting Started With ReactJs')
+  })
+  test('should remove when it has many numbers "[9999]', () => {
+    expect(cleanVideoName('[9999] Getting Started With ReactJs')).toBe('Getting Started With ReactJs')
+  })
+
 })

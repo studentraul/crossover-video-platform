@@ -6,3 +6,5 @@ export const truncateString = (string = '', size = 0) => {
     return string.slice(0, size).slice(0, -3) + '...'
   }
 }
+
+export const cleanVideoName = (videoName = '') => videoName.replace(/\[\d*\]\s/,'')
