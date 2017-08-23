@@ -1,0 +1,5 @@
+.container {
+  flex-wrap: nowrap;
+  flex-direction: row;
+  min-width: 1098px;
+}
