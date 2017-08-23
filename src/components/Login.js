@@ -25,13 +25,11 @@ export default class Login extends Component {
         else throw new Error('User or password invalid! ')
       })
       .then(token => {
-        console.log(token)
         localStorage.setItem('auth-token',token.sessionId)
         localStorage.setItem('username',token.userName)
         browserHistory.push('/')
       })
       .catch(err => this.setState({ error: err.message }))
-    console.log(requestInfo)
   }
 
   render() {
