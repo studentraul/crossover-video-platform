@@ -46,11 +46,15 @@ class VideoRating extends Component {
 
 class VideoInfo extends Component {
   render() {
-    const text = this.props.truncate ? truncateString(this.props.video.description, 110) : this.props.video.description
+    const text = this.props.truncate
+      ? truncateString(this.props.video.description, 110)
+      : this.props.video.description
     return (
-      <p className="video__description">
-        {text}
-      </p>
+      <div className="video__description">
+        <p className="video__description__title">
+          {text}
+        </p>
+      </div>
     )
   }
 }
@@ -61,23 +65,23 @@ export default class Video extends Component {
   }
 
   render() {
-    const mini = this.props.mini
+    const isMini = this.props.mini
 
     return (
       <div
         data-url=""
-        className={`video ${mini ? 'mini' : ''}`}
-        onClick={mini ? this.openVideo.bind(this) : null}
+        className={`video ${isMini ? 'mini' : ''}`}
+        onClick={isMini ? this.openVideo.bind(this) : null}
       >
         <VideoHeader video={this.props.video} />
-        <VideoPlayer video={this.props.video} preload={mini ? 'none' : ''}/>
+        <VideoPlayer video={this.props.video} preload={isMini ? 'none' : ''} />
         <VideoRating video={this.props.video} />
-        <VideoInfo video={this.props.video} truncate={mini}/>
+        <VideoInfo video={this.props.video} truncate={isMini} />
       </div>
     )
   }
 }
 
 Video.defaultProps = {
-  mini: true
+  mini: true,
 }
