@@ -1,19 +1,16 @@
-.video {
-  max-width: 900px;
-  padding: 1rem .625rem;
-  margin: 1rem auto;
-  border: 1px #cfcfcf solid;
-  border-radius: 3px;
-  background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.video.mini {
-  height: 255px;
-  width: 210px;
-  cursor: pointer;
+#Video{
+ font-family: 'Open-sans',sans-serif;  
+ text-align: left;
+ height: 255px;
+ width: 210px;
+ cursor: pointer;
+ padding: 1rem .625rem;
+ margin: 1rem auto;
+ border: 1px #cfcfcf solid;
+ background-color: #f5f5f5;
+ display: flex;
+ flex-direction: column;
+ align-items: stretch;
 }
 
 /* Title */
@@ -28,14 +25,9 @@
 
 .video .video__player video {
   align-self: center;
-  width: 466px;
-  height: 290px;
-  margin: 0 auto;
-}
-
-.video.mini .video__player video {
   width: 185px;
   height: 115px;
+  margin: 0 auto;
 }
 
 /* Ratting */
@@ -53,6 +45,6 @@
   flex: 1;
 }
 
-.video.mini .video__description {
+.video .video__description {
   font-size: .8rem;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Video from './Video'
-import '../css/home.css'
+import Video from '../common/Video'
+import './Home.css'
 
 export default class Home extends Component {
   constructor() {

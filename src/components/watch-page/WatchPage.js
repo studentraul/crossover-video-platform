@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import Video from './Video'
-import '../css/watchPage.css'
+//import Video from '../Video'
+import VideoWatch from './VideoWatch'
+import RelatedVideos from './RelatedVideos'
+import './WatchPage.css'
 
 export default class WatchPage extends Component {
   constructor() {
@@ -62,14 +64,11 @@ export default class WatchPage extends Component {
     const video = this.state.video
     return (
       <main id="WatchPage">
+        {/* <Video key={video._id} video={video} mini={false} /> */}
         <section className="main-video">
-          <Video key={video._id} video={video} mini={false} />
+          <VideoWatch />
         </section>
-        <section className="related-list">
-          {this.state.videosList.map(video =>
-            <Video key={video._id} video={video} />,
-          )}
-        </section>
+        <RelatedVideos />
       </main>
     )
   }

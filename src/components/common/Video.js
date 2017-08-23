@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { truncateString } from '../utils/string'
+import { truncateString, cleanVideoName } from '../../utils/string'
 import { browserHistory } from 'react-router'
 import ReactStars from 'react-stars'
-import '../css/video.css'
+import './Video.css'
 
 class VideoHeader extends Component {
   render() {
     return (
       <header className="video__header">
         <p className="video__title">
-          {this.props.name}
+          {cleanVideoName(this.props.name)}
         </p>
       </header>
     )
@@ -21,7 +21,7 @@ class VideoPlayer extends Component {
     const url = this.props.url ? `http://localhost:3000/${this.props.url}` : ''
     return (
       <div className="video__player">
-        <video controls>
+        <video>
           <source src={url} type="video/mp4" />
         </video>
       </div>
@@ -41,43 +41,15 @@ class VideoRating extends Component {
     return getTotal() / ratings.length
   }
 
-  setRating(videoId, rating) {
-    const requestInfo = {
-      method: 'POST',
-      body: JSON.stringify({
-        videoId: videoId,
-        rating: rating,
-      }),
-      headers: new Headers({ 'Content-type': 'application/json' }),
-    }
-
-    const userId = localStorage.getItem('auth-token')
-    fetch(
-      `http://localhost:3000/video/ratings?sessionId=${userId}`,
-      requestInfo,
-    )
-      .then(res => res.json())
-      .then(success => console.log(success))
-      .catch(err => console.log(err))
-  }
-
   render() {
-    const ratingChanged = newRating => {
-      this.setRating(this.props.videoId, newRating)
-    }
     const ratings = this.props.ratings
-    const edit = this.props.edit
-    const isHalfRating = edit ? true : undefined
-
     return (
       <div className="video__rating">
         <ReactStars
           count={5}
-          onChange={ratingChanged}
-          value={edit ? 0 : this.calculateRating(ratings)}
+          value={this.calculateRating(ratings)}
           size={24}
-          half={isHalfRating}
-          edit={edit ? undefined : false}
+          edit={false}
           color2={'#ffd700'}
         />
       </div>
@@ -87,9 +59,7 @@ class VideoRating extends Component {
 
 class VideoInfo extends Component {
   render() {
-    const text = this.props.truncate
-      ? truncateString(this.props.description, 110)
-      : this.props.description
+    const text = truncateString(this.props.description, 30)
     return (
       <div className="video__description">
         <p className="video__description__title">
@@ -106,28 +76,14 @@ export default class Video extends Component {
   }
 
   render() {
-    const isMini = this.props.mini
-    const isEditable = isMini ? false : true
-    const needsToBeTruncate = this.props.truncate
     const video = this.props.video
 
     return (
-      <div
-        data-url=""
-        className={`video ${isMini ? 'mini' : ''}`}
-        onClick={isMini ? this.openVideo.bind(this) : null}
-      >
+      <div id="Video" onClick={this.openVideo.bind(this)}>
         <VideoHeader name={video.name} />
-        <VideoPlayer url={video.url} preload={isMini ? 'none' : ''} />
-        <VideoRating
-          ratings={video.ratings}
-          videoId={video._id}
-          edit={isEditable}
-        />
-        <VideoInfo
-          description={video.description}
-          truncate={needsToBeTruncate}
-        />
+        <VideoPlayer url={video.url} />
+        <VideoRating ratings={video.ratings} />
+        <VideoInfo description={video.description} />
       </div>
     )
   }

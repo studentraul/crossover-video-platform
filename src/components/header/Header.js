@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import UserIcon from './icons/UserIcon'
-import '../css/header.css'
+import UserIcon from '../icons/UserIcon'
+import './Header.css'
 
 export default class Header extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class Header extends Component {
         <div className="container">
           <div className="logo">
             <h1>
-              <Link className="logo__link" to="">Crossover Video Platform
+              <Link className="logo__link" to="/">Crossover Video Platform
               </Link>
             </h1>
           </div>

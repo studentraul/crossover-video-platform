@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import * as md5 from 'blueimp-md5'
 import { browserHistory } from 'react-router'
-import '../css/login.css'
+import './Login.css'
 
-import UserIcon from './icons/UserIcon'
-import LockIcon from './icons/LockIcon'
+import UserIcon from '../icons/UserIcon'
+import LockIcon from '../icons/LockIcon'
 
 export default class Login extends Component {
   constructor(props) {
