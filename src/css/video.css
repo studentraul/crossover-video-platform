@@ -50,6 +50,7 @@
 .video .video__description {
   font-size: 1rem;
   overflow: auto;
+  flex: 1;
 }
 
 .video.mini .video__description {

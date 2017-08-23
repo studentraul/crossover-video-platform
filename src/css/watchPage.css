@@ -1,8 +1,21 @@
 #WatchPage {
-  flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   width: 90%;
   margin: 0 auto;
   max-width: 1098px;
   padding: 1rem;
+}
+#WatchPage .main-video {
+  flex: 1;
+}
+#WatchPage .related-list {
+  margin: 0 1rem;
+}
+
+@media screen and (max-width: 1036px) {
+  #WatchPage .related-list {
+    margin: 0;
+  }
 }
