@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router'
+import { Link } from 'react-router'
+import UserIcon from './icons/UserIcon'
 import '../css/header.css'
 
 export default class Header extends Component {
   render() {
     return (
-      <header className="header-bar">
-        <h1>
-          <Link className="link" to="/">
-            Crossover Portal Video
-          </Link>
-        </h1>
+      <header id="Header">
+        <div className="container">
+          <div className="logo">
+            <h1>
+              <Link className="logo__link" to="">Crossover Video Platform
+              </Link>
+            </h1>
+          </div>
+          <div className="user">
+            <div className="user__infos">
+              <UserIcon classList="user__infos__icon"/>
+              <p className="user__infos__username">Ali</p>
+            </div>
+            <Link to="/logout" className="user__logout">
+              Logout
+            </Link>
+          </div>
+        </div>
       </header>
     )
   }

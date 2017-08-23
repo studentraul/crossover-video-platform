@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import * as md5 from 'blueimp-md5'
-import {browserHistory} from 'react-router'
+import { browserHistory } from 'react-router'
 import '../css/login.css'
+
+import UserIcon from './icons/UserIcon'
+import LockIcon from './icons/LockIcon'
 
 export default class Login extends Component {
   constructor(props) {
     super()
-    this.state = { error: props.location.query.msg ||'' }
+    this.state = { error: props.location.query.msg || '' }
   }
   login(event) {
     event.preventDefault()
@@ -25,8 +28,8 @@ export default class Login extends Component {
         else throw new Error('User or password invalid! ')
       })
       .then(token => {
-        localStorage.setItem('auth-token',token.sessionId)
-        localStorage.setItem('username',token.userName)
+        localStorage.setItem('auth-token', token.sessionId)
+        localStorage.setItem('username', token.userName)
         browserHistory.push('/')
       })
       .catch(err => this.setState({ error: err.message }))
@@ -34,36 +37,39 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div id="Login">
-        <form onSubmit={this.login.bind(this)} className="form-login" action="">
-          <header className="form-login__header">
-            <h1 className="form-login__header__title">
-              Crossover Video Platform
-            </h1>
-            <span className="form-login__header__error">
-              {this.state.error}
-            </span>
-          </header>
-          <div className="input-content">
-            <label htmlFor="">User</label>
-            <input
-              name="username"
-              type="text"
-              ref={input => (this.username = input)}
-            />
+      <main id="Login">
+        <div className="container">
+          <div className="logo">
+            <h1 className="logo__text">Crossover Video Platform</h1>
           </div>
-
-          <div className="input-content">
-            <label htmlFor="">Password</label>
-            <input
-              name="passowrd"
-              type="password"
-              ref={input => (this.password = input)}
-            />
-          </div>
-          <button className="form-login__btn-login"> Login</button>
-        </form>
-      </div>
+          <span className="error-login">
+            {this.state.error}
+          </span>
+          <form onSubmit={this.login.bind(this)} className="form-login">
+            <div className="input-group">
+              <UserIcon classList="icon" />
+              <input
+                name="username"
+                type="text"
+                className="input"
+                ref={input => (this.username = input)}
+              />
+            </div>
+            <div className="input-group">
+              <LockIcon classList="icon" />
+              <input
+                name="password"
+                type="password"
+                className="input"
+                ref={input => (this.password = input)}
+              />
+            </div>
+            <div className="action">
+              <button className="button">Login</button>
+            </div>
+          </form>
+        </div>
+      </main>
     )
   }
 }

@@ -1,23 +1,80 @@
-.Login {
-  display: flex;
+#Login {
+  width: 100%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.form-login {
-  background-color: #c4c4c4;
-  width: 300px;
-  padding: 1rem .6rem;
-  display: flex;
-  flex-direction: column;
-}
-.input-content {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem;
+  background-color: #34495e;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.form-login__btn-login{
-  align-self: center;
-  flex-grow: 2;
+#Login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Login .container {
+  background-color: #ecf0f1;
+  padding: 2rem;
+	height: 500px;
+	width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#Login .error-login {
+  color: #e74c3c;
+	margin: 2rem 0;
+	text-align: center;
+}
+
+#Login .logo__text {
+	font-size: 2.5rem;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+}
+
+#Login .form-login {
+  width: 100%;
+}
+
+#Login .input-group {
+  border: 1px solid #ebebeb;
+  margin: .5rem .2rem;
+  position: relative;
+}
+
+#Login .input-group .input {
+  background: #fff;
+  border: none;
+  padding: 1em 1.3em;
+  width: 100%;
+  color: #34495e;
+}
+#Login .input-group .input:focus {
+  outline: none;
+}
+
+#Login .input-group .icon {
+  left: 0;
+  margin: .5em;
+  position: absolute;
+	top: 0;
+	fill: #34495e;
+}
+
+#Login .input-group .icon ~ .input {
+  padding-left: 3.4em;
+}
+
+#Login .action {
+  margin-top: 3rem;
+}
+#Login .button {
+  background-color: #34495e;
+  color: #ecf0f1;
+  width: 100%;
+  padding: .8rem .5rem;
+  font-size: 1.3rem;
+  border: none;
 }
