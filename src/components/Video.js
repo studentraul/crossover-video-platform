@@ -8,7 +8,7 @@ class VideoHeader extends Component {
     return (
       <header className="video__header">
         <p className="video__title">
-          {this.props.video.name}
+          {this.props.name}
         </p>
       </header>
     )
@@ -17,13 +17,11 @@ class VideoHeader extends Component {
 
 class VideoPlayer extends Component {
   render() {
+    const url = this.props.url ? `http://localhost:3000/${this.props.url}` : ''
     return (
       <div className="video__player">
         <video controls>
-          <source
-            src={`http://localhost:3000/${this.props.video.url}`}
-            type="video/mp4"
-          />
+          <source src={url} type="video/mp4" />
         </video>
       </div>
     )
@@ -47,8 +45,8 @@ class VideoRating extends Component {
 class VideoInfo extends Component {
   render() {
     const text = this.props.truncate
-      ? truncateString(this.props.video.description, 110)
-      : this.props.video.description
+      ? truncateString(this.props.description, 110)
+      : this.props.description
     return (
       <div className="video__description">
         <p className="video__description__title">
@@ -62,10 +60,13 @@ class VideoInfo extends Component {
 export default class Video extends Component {
   openVideo() {
     browserHistory.push(`/watch/${this.props.video._id}`)
+    
   }
 
   render() {
     const isMini = this.props.mini
+    const needsToBeTruncate = this.props.truncate
+    const video = this.props.video
 
     return (
       <div
@@ -73,10 +74,13 @@ export default class Video extends Component {
         className={`video ${isMini ? 'mini' : ''}`}
         onClick={isMini ? this.openVideo.bind(this) : null}
       >
-        <VideoHeader video={this.props.video} />
-        <VideoPlayer video={this.props.video} preload={isMini ? 'none' : ''} />
-        <VideoRating video={this.props.video} />
-        <VideoInfo video={this.props.video} truncate={isMini} />
+        <VideoHeader name={video.name} />
+        <VideoPlayer url={video.url} preload={isMini ? 'none' : ''} />
+        <VideoRating ratings={video.ratings} />
+        <VideoInfo
+          description={video.description}
+          truncate={needsToBeTruncate}
+        />
       </div>
     )
   }
@@ -84,4 +88,11 @@ export default class Video extends Component {
 
 Video.defaultProps = {
   mini: true,
+  truncate: true,
+  video: {
+    name: 'Some video',
+    url: '',
+    ratings: [],
+    description: 'Some description',
+  },
 }
