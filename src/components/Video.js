@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { truncateString } from '../utils/string'
 import { browserHistory } from 'react-router'
+import ReactStars from 'react-stars'
 import '../css/video.css'
 
 class VideoHeader extends Component {
@@ -29,14 +30,56 @@ class VideoPlayer extends Component {
 }
 
 class VideoRating extends Component {
+  calculateRating(ratings = [0]) {
+    function getTotal() {
+      return ratings.reduce(
+        (iterator, currentValue) => (iterator += currentValue),
+        0,
+      )
+    }
+
+    return getTotal() / ratings.length
+  }
+
+  setRating(videoId, rating) {
+    const requestInfo = {
+      method: 'POST',
+      body: JSON.stringify({
+        videoId: videoId,
+        rating: rating,
+      }),
+      headers: new Headers({ 'Content-type': 'application/json' }),
+    }
+
+    const userId = localStorage.getItem('auth-token')
+    fetch(
+      `http://localhost:3000/video/ratings?sessionId=${userId}`,
+      requestInfo,
+    )
+      .then(res => res.json())
+      .then(success => console.log(success))
+      .catch(err => console.log(err))
+  }
+
   render() {
+    const ratingChanged = newRating => {
+      this.setRating(this.props.videoId, newRating)
+    }
+    const ratings = this.props.ratings
+    const edit = this.props.edit
+    const isHalfRating = edit ? true : undefined
+
     return (
       <div className="video__rating">
-        {/* <i className="star  fa fa-star" aria-hidden="true" />
-            <i className="star is-colored fa fa-star" aria-hidden="true" />
-            <i className="star is-colored fa fa-star" aria-hidden="true" />
-            <i className="star is-colored fa fa-star" aria-hidden="true" />
-            <i className="star fa fa-star" aria-hidden="true" /> */}
+        <ReactStars
+          count={5}
+          onChange={ratingChanged}
+          value={edit ? 0 : this.calculateRating(ratings)}
+          size={24}
+          half={isHalfRating}
+          edit={edit ? undefined : false}
+          color2={'#ffd700'}
+        />
       </div>
     )
   }
@@ -60,11 +103,11 @@ class VideoInfo extends Component {
 export default class Video extends Component {
   openVideo() {
     browserHistory.push(`/watch/${this.props.video._id}`)
-    
   }
 
   render() {
     const isMini = this.props.mini
+    const isEditable = isMini ? false : true
     const needsToBeTruncate = this.props.truncate
     const video = this.props.video
 
@@ -76,7 +119,11 @@ export default class Video extends Component {
       >
         <VideoHeader name={video.name} />
         <VideoPlayer url={video.url} preload={isMini ? 'none' : ''} />
-        <VideoRating ratings={video.ratings} />
+        <VideoRating
+          ratings={video.ratings}
+          videoId={video._id}
+          edit={isEditable}
+        />
         <VideoInfo
           description={video.description}
           truncate={needsToBeTruncate}
