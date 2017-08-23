@@ -38,7 +38,7 @@ export default class WatchPage extends Component {
 
   render() {
     return (
-      <main className="container">
+      <main id="WatchPage">
         <Video video={this.state.mainVideo} mini={false}/>
         <div className="related-list">
         

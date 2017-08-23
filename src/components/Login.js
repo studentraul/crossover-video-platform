@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as md5 from 'blueimp-md5'
 import {browserHistory} from 'react-router'
+import '../css/login.css'
 
 export default class Login extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div id="Login">
         <form onSubmit={this.login.bind(this)} className="form-login" action="">
           <header className="form-login__header">
             <h1 className="form-login__header__title">

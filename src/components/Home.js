@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Video from './Video'
+import '../css/home.css'
 
 export default class Home extends Component {
   constructor() {
@@ -19,7 +20,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <main className="container">
+      <main id="Home">
         {this.state.videos.map(video => <Video key={video._id} video={video}/>)}
       </main>
     )

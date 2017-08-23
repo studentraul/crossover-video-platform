@@ -1,11 +1,7 @@
-*{
-  box-sizing: border-box;
-}
-.container{
+#Home {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 960px;
   margin: 0 auto;
 }
-
