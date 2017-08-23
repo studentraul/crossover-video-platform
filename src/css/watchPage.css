@@ -1,5 +1,8 @@
 #WatchPage {
   flex-wrap: nowrap;
   flex-direction: row;
-  min-width: 1098px;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1098px;
+  padding: 1rem;
 }
