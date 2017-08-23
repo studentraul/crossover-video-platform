@@ -18,7 +18,7 @@ export default class Logout extends Component {
       .then(success => {
         localStorage.removeItem('auth-token')
         localStorage.removeItem('username')
-        browserHistory.push('/')
+        browserHistory.push('/login')
       })
       .catch(err => console.log(err.message))
   }

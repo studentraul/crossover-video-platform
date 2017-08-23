@@ -27,7 +27,7 @@ export default class Login extends Component {
         console.log(token)
         localStorage.setItem('auth-token',token.sessionId)
         localStorage.setItem('username',token.userName)
-        browserHistory.push('/home')
+        browserHistory.push('/')
       })
       .catch(err => this.setState({ error: err.message }))
     console.log(requestInfo)
