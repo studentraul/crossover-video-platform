@@ -7,9 +7,8 @@ import './VideoWatch.css'
 import PubSub from 'pubsub-js'
 
 class Midia extends Component {
-
   reload() {
-    this.videoRef.load()
+    this.videoRef ? this.videoRef.load() : null
   }
 
   componentDidMount() {
@@ -40,26 +39,11 @@ class Midia extends Component {
 
 class Ratting extends Component {
   setRating(videoId, rating) {
-    const requestInfo = {
-      method: 'POST',
-      body: JSON.stringify({
-        videoId: videoId,
-        rating: rating,
-      }),
-      headers: new Headers({ 'Content-type': 'application/json' }),
-    }
-
-    const userId = localStorage.getItem('auth-token')
-    fetch(
-      `http://localhost:3000/video/ratings?sessionId=${userId}`,
-      requestInfo,
-    )
-      .then(res => res.json())
-      .then(success => console.log(success))
-      .catch(err => console.log(err))
+    
   }
   render() {
     const ratingChanged = newRating => {
+      
       this.setRating(this.props.videoId, newRating)
     }
 
@@ -97,13 +81,12 @@ export default class VideoWatch extends Component {
     }
   }
 
+  updateVideo(topic, video) {
+    this.setState({ video })
+  }
+
   componentDidMount() {
-    PubSub.subscribe(
-      'update-video-watch',
-      function(topic, video) {
-        this.setState({ video })
-      }.bind(this),
-    )
+    PubSub.subscribe('update-video-watch', this.updateVideo.bind(this))
   }
 
   render() {
