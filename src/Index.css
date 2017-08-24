@@ -15,3 +15,24 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.transaction-default{
+  width: 100%;  
+}
+.transaction-default-enter {
+  opacity: 0.01;
+}
+
+.transaction-default-enter.transaction-default-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.transaction-default-leave {
+  opacity: 1;
+}
+
+.transaction-default-leave.transaction-default-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
