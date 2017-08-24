@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-//import Video from '../Video'
 import VideoWatch from './VideoWatch'
 import RelatedVideos from './RelatedVideos'
 import './WatchPage.css'
@@ -8,7 +7,7 @@ export default class WatchPage extends Component {
   constructor() {
     super()
     this.state = {
-      video: {},
+      video: null,
       videosList: [],
     }
   }
@@ -46,7 +45,7 @@ export default class WatchPage extends Component {
     this.setState({ videosList })
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     const videoInfo = {
       idVideo: this.props.params.id,
     }
@@ -61,14 +60,16 @@ export default class WatchPage extends Component {
   }
 
   render() {
-    const video = this.state.video
     return (
       <main id="WatchPage">
-        {/* <Video key={video._id} video={video} mini={false} /> */}
         <section className="main-video">
-          <VideoWatch />
+          {
+            this.state.video ?
+            <VideoWatch video={this.state.video} />
+            : `Loading...`
+          }
         </section>
-        <RelatedVideos />
+        <RelatedVideos videos={this.state.videosList} />
       </main>
     )
   }
