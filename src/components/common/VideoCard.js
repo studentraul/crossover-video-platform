@@ -78,14 +78,3 @@ export default class VideoCard extends Component {
     )
   }
 }
-
-VideoCard.defaultProps = {
-  mini: true,
-  truncate: true,
-  video: {
-    name: 'Some video',
-    url: '',
-    ratings: [],
-    description: 'Some description',
-  },
-}
