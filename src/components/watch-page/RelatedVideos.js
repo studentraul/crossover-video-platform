@@ -1,48 +1,56 @@
 import React, { Component } from 'react'
 import ReactStars from 'react-stars'
 import './RelatedVideos.css'
+import { cleanVideoName } from '../../utils/string'
+
+import { openVideoFromId,calculateRating,getVideoUrl } from '../../controllers/VideoActions'
 
 class Video extends Component {
-  render () {
+  render() {
+    const video = this.props.video
+
+    const openVideo = () => {
+      openVideoFromId(video._id)
+    }
     return (
-      <div>
+      <div onClick={openVideo} className="video">
         <div className="midia">
-            <video className="midia__video">
-              <source
-                src="https://video-ams3-1.xx.fbcdn.net/v/t43.1792-2/20958471_114096075987204_8430579202100559872_n.mp4?efg=eyJybHIiOjE3OTUsInJsYSI6MTAyNCwidmVuY29kZV90YWciOiJzdmVfaGQifQu00253Du00253D&rl=1795&vabr=1197&oh=7b548158a43c65ae6910884abd7be3fe&oe=599DD8BD"
-                type="video/mp4"
-              />
-            </video>
+          <video className="midia__video">
+            <source
+              src={getVideoUrl(video.url)}
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <div className="video-infos">
+          <p className="video-infos__title">
+            {cleanVideoName(video.name)}
+          </p>
+          <div className="video-infos__ratings">
+            <ReactStars
+              count={5}
+              onChange={() => console.log('oi')}
+              value={calculateRating(video.ratings)}
+              size={24}
+              edit={false}
+              color2={'#ffd700'}
+            />
           </div>
-          <div className="video-infos">
-            <p className="video-infos__title">Meu Video</p>
-            <div className="video-infos__ratings">
-              <ReactStars
-                count={5}
-                onChange={() => console.log('oi')}
-                value={5}
-                size={24}
-                edit={false}
-                color2={'#ffd700'}
-              />
-            </div>
-          </div>
+        </div>
       </div>
     )
   }
 }
 
-
 export default class RelatedVideos extends Component {
   render() {
+    const videos = this.props.videos
     return (
-        <div id="RelatedVideo">
-          <Video/>
-          <Video/>
-          <Video/>
-          <Video/>
-          <Video/>
-        </div>
+      <div id="RelatedVideo">
+        {videos.map(video => {
+          return <Video key={video._id} video={video} />
+        })}
+      </div>
     )
   }
 }
