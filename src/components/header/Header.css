@@ -45,6 +45,7 @@
 
 #Header .user__infos__username {
   margin: 0 .5rem;
+  cursor: default;
 }
 
 #Header .user__infos__icon {
