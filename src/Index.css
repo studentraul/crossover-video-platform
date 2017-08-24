@@ -2,11 +2,16 @@
 * {
   box-sizing: border-box;
 }
-
-#root{
-  background-color: #ecf0f1;
+body,
+html {
+  height: 100%;
 }
+
+#root {
+  min-height: 100%;
+}
+
 a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,11 +1,28 @@
 #WatchPage {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   width: 70%;
   max-width: 1360px;
   padding: 2rem 0;
   margin: 0 auto;
 }
+
 #WatchPage .main-video {
-  max-width: 1100px;
+  width: 70%;
+  min-width: calc(360px);
+}
+
+@media screen and (max-width: 1360px){
+  #WatchPage {
+    width: 100%;
+    padding: 2rem;
+  }
+
+
+}
+@media screen and (max-width: 678px){
+  #WatchPage .main-video {
+    width: 100%;
+  }
 }

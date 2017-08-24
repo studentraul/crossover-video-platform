@@ -13,6 +13,9 @@
 }
 
 #VideoWatch .video-infos {
+  min-height: 215px;
+  display: flex;
+  flex-direction: column;
   padding: .6rem;
 }
 #VideoWatch .video-infos > * {
@@ -22,8 +25,4 @@
 #VideoWatch .video-infos__title {
   font-weight: bold;
   font-size: 1.3rem;
-}
-
-#VideoWatch .video-infos__description {
-  font-size: .8rem;
 }
