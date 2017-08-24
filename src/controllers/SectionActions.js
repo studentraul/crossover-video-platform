@@ -1,14 +1,15 @@
-import { SERVER_IP } from '../config/server-address.js'
+import ServerRoutes from '../config/ServerRoutes.js'
 
 const STORAGE_TOKEN_FIELD = 'auth-token'
 const STORAGE_USERNAME_FIELD = 'username'
+const routes = new ServerRoutes()
 
 export const getUserToken = () => localStorage.getItem(STORAGE_TOKEN_FIELD)
 export const getUserName = () => localStorage.getItem(STORAGE_USERNAME_FIELD)
 
 export const setUser = (token, username) => {
   try {
-    console.log('Estamos aqui?',token,username)
+    console.log('Estamos aqui?', token, username)
     if (!token) throw { msg: 'Empty Token' }
     if (!username) throw { msg: 'Empty username' }
 
@@ -33,7 +34,7 @@ export const signIn = (username, password) => {
     headers: new Headers({ 'Content-type': 'application/json' }),
   }
 
-  return fetch(SERVER_IP + 'user/auth/', requestInfo).then(res => {
+  return fetch(routes.auth, requestInfo).then(res => {
     if (res.ok) return res.json()
     else throw new Error('User or password invalid! ')
   })

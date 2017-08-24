@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactStars from 'react-stars'
 import { cleanVideoName } from '../../utils/string'
-import { getVideoUrl } from '../../controllers/VideoActions'
+import { getVideoUrl, setRating } from '../../controllers/VideoActions'
 import './VideoWatch.css'
 
 import PubSub from 'pubsub-js'
@@ -38,21 +38,31 @@ class Midia extends Component {
 }
 
 class Ratting extends Component {
-  setRating(videoId, rating) {
-    
-  }
-  render() {
-    const ratingChanged = newRating => {
-      
-      this.setRating(this.props.videoId, newRating)
+  constructor() {
+    super()
+    this.state = {
+      stars: 0,
     }
+  }
 
+  ratingChanged = newRating => {
+    setRating(this.props.video._id, newRating)
+      .then(success => this.changeRating(newRating))
+      .catch(err => {
+        this.changeRating(0)
+        console.log(err)
+      })
+  }
+
+  changeRating = stars => this.setState({ stars })
+
+  render() {
     return (
       <div className="video-infos__ratings">
         <ReactStars
           count={5}
-          onChange={ratingChanged}
-          value={0}
+          onChange={this.ratingChanged}
+          value={this.state.stars}
           half={false}
           size={24}
           color2={'#ffd700'}
