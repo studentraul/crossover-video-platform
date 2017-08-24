@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 import UserIcon from '../icons/UserIcon'
 import './Header.css'
 
+import {getUserName}  from '../../controllers/SectionActions'
+
 export default class Header extends Component {
   render() {
     return (
@@ -17,7 +19,7 @@ export default class Header extends Component {
           <div className="user">
             <div className="user__infos">
               <UserIcon classList="user__infos__icon"/>
-              <p className="user__infos__username">Ali</p>
+              <p className="user__infos__username">{getUserName()}</p>
             </div>
             <Link to="/logout" className="user__logout">
               Logout

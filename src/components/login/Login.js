@@ -6,30 +6,20 @@ import './Login.css'
 import UserIcon from '../icons/UserIcon'
 import LockIcon from '../icons/LockIcon'
 
+import { setUser, signIn } from '../../controllers/SectionActions'
+
 export default class Login extends Component {
   constructor(props) {
     super()
     this.state = { error: props.location.query.msg || '' }
   }
+
   login(event) {
     event.preventDefault()
-    const requestInfo = {
-      method: 'POST',
-      body: JSON.stringify({
-        username: this.username.value,
-        password: md5(this.password.value),
-      }),
-      headers: new Headers({ 'Content-type': 'application/json' }),
-    }
 
-    fetch('http://localhost:3000/user/auth/', requestInfo)
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error('User or password invalid! ')
-      })
+    signIn(this.username.value, md5(this.password.value))
       .then(token => {
-        localStorage.setItem('auth-token', token.sessionId)
-        localStorage.setItem('username', token.userName)
+        setUser(token.sessionId, token.username)
         browserHistory.push('/')
       })
       .catch(err => this.setState({ error: err.message }))
