@@ -4,6 +4,8 @@ import { cleanVideoName } from '../../utils/string'
 import { getVideoUrl, setRating } from '../../controllers/VideoActions'
 import './VideoWatch.css'
 
+import { Collapse } from 'react-collapse'
+
 import PubSub from 'pubsub-js'
 
 class Midia extends Component {
@@ -75,10 +77,14 @@ class Ratting extends Component {
 class Description extends Component {
   render() {
     const text = this.props.video.description
+    const isOpened = this.props.isOpened
+
     return (
-      <p className="video-infos__description">
-        {text}
-      </p>
+      <Collapse isOpened={isOpened}>
+        <p className="video-infos__description">
+          {text}
+        </p>
+      </Collapse>
     )
   }
 }
@@ -88,6 +94,7 @@ export default class VideoWatch extends Component {
     super(props)
     this.state = {
       video: props.video,
+      isOpened: false,
     }
   }
 
@@ -99,17 +106,25 @@ export default class VideoWatch extends Component {
     PubSub.subscribe('update-video-watch', this.updateVideo.bind(this))
   }
 
+  handleOpenDescription() {
+    const openState = this.state.isOpened ? false : true
+    this.setState({ isOpened: openState })
+  }
+
   render() {
     const video = this.state.video
     return (
       <div id="VideoWatch">
         <Midia video={video} />
         <div className="video-infos">
-          <p className="video-infos__title">
+          <p
+            className="video-infos__title"
+            onClick={() => this.handleOpenDescription()}
+          >
             {cleanVideoName(video.name)}
           </p>
           <Ratting video={video} />
-          <Description video={video} />
+          <Description video={video} isOpened={this.state.isOpened} />
         </div>
       </div>
     )
