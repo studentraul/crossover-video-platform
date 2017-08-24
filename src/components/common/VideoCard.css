@@ -1,0 +1,40 @@
+#VideoCard {
+  font-family: 'Open Sans', sans-serif;
+  max-width: 300px;
+  background-color: #fff;
+  border: 1px #c4c4c4 solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem .5rem;
+  margin: .5rem;
+  cursor: pointer;
+}
+
+#VideoCard .title {
+  font-weight: bold;
+  margin: .5rem 0;
+  text-align: center;
+  min-height: 2rem;
+  font-size: 1rem;
+}
+
+#VideoCard .midia {
+  width: 100%;
+}
+#VideoCard .midia__video {
+  display: block;
+  width: 100%;
+}
+
+#VideoCard .infos {
+  padding: .6rem;
+}
+#VideoCard infos > * {
+  margin: .5rem 0;
+}
+
+#VideoCard .infos__description {
+  padding: .4rem 0;
+  font-size: .8rem;
+}

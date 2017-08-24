@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Video from '../common/Video'
+import VideoCard from '../common/VideoCard'
 import './Home.css'
 
 export default class Home extends Component {
@@ -21,7 +21,7 @@ export default class Home extends Component {
   render() {
     return (
       <main id="Home">
-        {this.state.videos.map(video => <Video key={video._id} video={video}/>)}
+        {this.state.videos.map(video => <VideoCard key={video._id} video={video}/>)}
       </main>
     )
   }
