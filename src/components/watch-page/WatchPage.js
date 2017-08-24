@@ -3,8 +3,10 @@ import VideoWatch from './VideoWatch'
 import RelatedVideos from './RelatedVideos'
 import './WatchPage.css'
 
+import PubSub from 'pubsub-js'
+
 export default class WatchPage extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       video: null,
@@ -40,6 +42,9 @@ export default class WatchPage extends Component {
     const video = await this.getSingleVideo(videoInfos.idVideo).then(
       json => json.data,
     )
+
+    PubSub.publish('update-video-watch',video)
+    
     const videosList = await this.getMoreVideos().then(json => json.data)
     this.setState({ video })
     this.setState({ videosList })

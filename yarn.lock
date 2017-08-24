@@ -6,6 +6,10 @@
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.0.tgz#093d67ed780d889c9543f6dca24ebee0b6b9fc45"
 
+"@types/pubsub-js@^1.5.18":
+  version "1.5.18"
+  resolved "https://registry.yarnpkg.com/@types/pubsub-js/-/pubsub-js-1.5.18.tgz#dd12284c5e93b39874e62675702bf50c6f55e9ec"
+
 "@types/react-router@^4.0.15":
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.15.tgz#be8aaefc20afd968a5dbcffcf09060e6c2e8746e"
@@ -16,6 +20,10 @@
 "@types/react@*":
   version "16.0.3"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.3.tgz#494d5aa71fc071be6eb2a8d3d489da529b25294a"
+
+"@types/react@^16.0.5":
+  version "16.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.5.tgz#d713cf67cc211dea20463d2a0b66005c22070c4b"
 
 abab@^1.0.3:
   version "1.0.3"
@@ -4989,6 +4997,10 @@ public-encrypt@^4.0.0:
     create-hash "^1.1.0"
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
+
+pubsub-js@^1.5.7:
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/pubsub-js/-/pubsub-js-1.5.7.tgz#a9f386ac141b0905b19cbb2dd57256265f975744"
 
 punycode@1.3.2:
   version "1.3.2"

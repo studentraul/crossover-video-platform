@@ -29,7 +29,6 @@ class Video extends Component {
           <div className="video-infos__ratings">
             <ReactStars
               count={5}
-              onChange={() => console.log('oi')}
               value={calculateRating(video.ratings)}
               size={24}
               edit={false}

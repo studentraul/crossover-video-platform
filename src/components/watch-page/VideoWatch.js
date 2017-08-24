@@ -1,20 +1,37 @@
 import React, { Component } from 'react'
 import ReactStars from 'react-stars'
-import {cleanVideoName} from '../../utils/string'
-import {getVideoUrl} from '../../controllers/VideoActions'
+import { cleanVideoName } from '../../utils/string'
+import { getVideoUrl } from '../../controllers/VideoActions'
 import './VideoWatch.css'
 
+import PubSub from 'pubsub-js'
+
 class Midia extends Component {
+
+  reload() {
+    this.videoRef.load()
+  }
+
+  componentDidMount() {
+    PubSub.subscribe(
+      'update-video-watch',
+      function(topic, video) {
+        this.reload()
+      }.bind(this),
+    )
+  }
+
   render() {
-    const url = this.props.video.url ? getVideoUrl(this.props.video.url) : '';
-    console.log(this.props.video)
+    const url = this.props.video.url ? getVideoUrl(this.props.video.url) : ''
+
     return (
       <div className="midia">
-        <video className="midia__video" controls autoPlay>
-          <source
-            src={url}
-            type="video/mp4"
-          />
+        <video
+          className="midia__video"
+          controls
+          ref={video => (this.videoRef = video)}
+        >
+          <source src={url} type="video/mp4" />
         </video>
       </div>
     )
@@ -73,14 +90,31 @@ class Description extends Component {
 }
 
 export default class VideoWatch extends Component {
-  render() {
-    const video = this.props.video
+  constructor(props) {
+    super(props)
+    this.state = {
+      video: props.video,
+    }
+  }
 
+  componentDidMount() {
+    PubSub.subscribe(
+      'update-video-watch',
+      function(topic, video) {
+        this.setState({ video })
+      }.bind(this),
+    )
+  }
+
+  render() {
+    const video = this.state.video
     return (
       <div id="VideoWatch">
         <Midia video={video} />
         <div className="video-infos">
-          <p className="video-infos__title">{cleanVideoName(video.name)}</p>
+          <p className="video-infos__title">
+            {cleanVideoName(video.name)}
+          </p>
           <Ratting video={video} />
           <Description video={video} />
         </div>
