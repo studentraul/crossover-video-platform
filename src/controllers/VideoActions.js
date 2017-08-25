@@ -1,5 +1,7 @@
 import { browserHistory } from 'react-router'
 import ServerRoutes from '../config/ServerRoutes'
+import { getUserToken } from './SectionActions'
+
 const routes = new ServerRoutes()
 
 export const openVideoFromId = id => {
@@ -27,19 +29,20 @@ export const getVideoUrl = url => {
 }
 
 export const setRating = (videoId, rating) => {
-  const videoData = {
-    videoId: videoId,
-    rating: rating,
-  }
-
   const requestInfo = {
     method: 'POST',
-    body: JSON.stringify(videoData),
+    body: JSON.stringify({
+      videoId,
+      rating,
+    }),
     headers: new Headers({ 'Content-type': 'application/json' }),
   }
 
-  const userId = localStorage.getItem('auth-token')
-  return fetch(routes.doReview(userId), requestInfo)
-    .then(res => res.json())
+  return fetch(routes.doReview(getUserToken()), requestInfo).then(res =>
+    res.json(),
+  )
+}
 
+export const loadVideos = () => {
+  return fetch(routes.videoList(getUserToken())).then(res => res.json())
 }

@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import { truncateString, cleanVideoName } from '../../utils/string'
 import ReactStars from 'react-stars'
-import './VideoCard.css'
 
-import {openVideoFromId,calculateRating} from '../../controllers/VideoActions'
+import { truncateString, cleanVideoName } from '../../utils/string'
+import {
+  openVideoFromId,
+  calculateRating,
+} from '../../controllers/VideoActions'
+
+import './VideoHome.css'
 
 class VideoHeader extends Component {
   render() {
@@ -29,10 +33,9 @@ class VideoPlayer extends Component {
 }
 
 class VideoRating extends Component {
-  
-
   render() {
-    const ratings = this.props.ratings
+    const { ratings } = this.props
+    
     return (
       <div className="infos__ratings">
         <ReactStars
@@ -58,21 +61,21 @@ class VideoDescription extends Component {
   }
 }
 
-export default class VideoCard extends Component {
+export default class VideoHome extends Component {
   openVideo() {
     openVideoFromId(this.props.video._id)
   }
 
   render() {
-    const video = this.props.video
+    const { name, url, ratings, description } = this.props.video
 
     return (
-      <div id="VideoCard" onClick={this.openVideo.bind(this)}>
-        <VideoHeader name={video.name} />
-        <VideoPlayer url={video.url} />
+      <div id="VideoHome" onClick={this.openVideo.bind(this)}>
+        <VideoHeader name={name} />
+        <VideoPlayer url={url} />
         <div className="infos">
-          <VideoRating ratings={video.ratings} />
-          <VideoDescription description={video.description} />
+          <VideoRating ratings={ratings} />
+          <VideoDescription description={description} />
         </div>
       </div>
     )

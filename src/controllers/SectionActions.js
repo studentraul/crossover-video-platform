@@ -1,3 +1,4 @@
+import * as md5 from 'blueimp-md5'
 import ServerRoutes from '../config/ServerRoutes.js'
 
 const STORAGE_TOKEN_FIELD = 'auth-token'
@@ -9,9 +10,8 @@ export const getUserName = () => localStorage.getItem(STORAGE_USERNAME_FIELD)
 
 export const setUser = (token, username) => {
   try {
-    console.log('Estamos aqui?', token, username)
-    if (!token) throw { msg: 'Empty Token' }
-    if (!username) throw { msg: 'Empty username' }
+    if (!token) throw new Error('Empty Token')
+    if (!username) throw new Error('Empty username')
 
     localStorage.setItem(STORAGE_TOKEN_FIELD, token)
     localStorage.setItem(STORAGE_USERNAME_FIELD, username)
@@ -39,3 +39,5 @@ export const signIn = (username, password) => {
     else throw new Error('User or password invalid! ')
   })
 }
+
+export const encryptPassword = (password) => md5(password)

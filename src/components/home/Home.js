@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import VideoCard from '../common/VideoCard'
+import VideoHome from './VideoHome'
 import { loadVideos } from '../../controllers/VideoActions'
 
 import './Home.css'
@@ -28,7 +28,7 @@ export default class Home extends Component {
         transitionLeaveTimeout={300}
       >
         {this.state.videos.map(video =>
-          <VideoCard key={video._id} video={video} />,
+          <VideoHome key={video._id} video={video} />,
         )}
       </ReactCSSTransitionGroup>
     )
