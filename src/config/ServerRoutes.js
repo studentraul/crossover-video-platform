@@ -3,9 +3,14 @@ export default class ServerRoutes {
     this._serverIP = 'http://127.0.0.1:3000'
   }
 
-  doReview(userId) {
-    return `${this._serverIP}/video/ratings?sessionId=${userId}`
+  doReview(userToken) {
+    return `${this._serverIP}/video/ratings?sessionId=${userToken}`
   }
+
+  videoList(userToken) {
+    return `http://localhost:3000/videos?sessionId=${userToken}`
+  }
+
   get serverIp() {
     return this._serverIP
   }
