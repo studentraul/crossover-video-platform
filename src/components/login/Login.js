@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router'
 
 import { UserIcon, LockIcon } from '../common/Icons'
 import InputGroup from '../common/InputGroup'
+import ErrorMessage from '../common/ErrorSpan'
+
 import {
   encryptPassword,
   setUser,
@@ -12,21 +14,6 @@ import {
 
 import './Login.css'
 
-class ErrorMessage extends Component {
-  render() {
-    const { message } = this.props
-
-    return (
-      <span className="error-login">
-        {message}
-      </span>
-    )
-  }
-}
-
-ErrorMessage.propTypes = {
-  message: PropTypes.string.isRequired,
-}
 
 export default class Login extends Component {
   constructor(props) {
