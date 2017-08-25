@@ -1,0 +1,29 @@
+.InputGroup {
+  border: 1px solid #ebebeb;
+  margin: .5rem .2rem;
+  position: relative;
+}
+
+.InputGroup .input {
+  background: #fff;
+  border: none;
+  padding: 1em 1.3em;
+  width: 100%;
+  color: #34495e;
+}
+.InputGroup .input:focus {
+  outline: none;
+}
+
+.InputGroup .icon {
+  left: 0;
+  margin: .5em;
+  position: absolute;
+  top: 0;
+  fill: #34495e;
+}
+
+.InputGroup .icon ~ .input {
+  padding-left: 3.4em;
+}
+
