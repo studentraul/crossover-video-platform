@@ -5,6 +5,11 @@ const STORAGE_TOKEN_FIELD = 'auth-token'
 const STORAGE_USERNAME_FIELD = 'username'
 const routes = new ServerRoutes()
 
+const cleanUserSection = () =>{
+  localStorage.removeItem(STORAGE_TOKEN_FIELD)
+  localStorage.removeItem(STORAGE_USERNAME_FIELD)
+}
+
 export const getUserToken = () => localStorage.getItem(STORAGE_TOKEN_FIELD)
 export const getUserName = () => localStorage.getItem(STORAGE_USERNAME_FIELD)
 
@@ -41,3 +46,14 @@ export const signIn = (username, password) => {
 }
 
 export const encryptPassword = (password) => md5(password)
+
+export const logout = () => {
+  return fetch(routes.logout(getUserToken())).then(res => {
+    if (res.ok) {
+      cleanUserSection()
+      return res
+    } else {
+      throw new Error('It was not possible to logout')
+    }
+  })
+}

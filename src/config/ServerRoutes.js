@@ -10,6 +10,10 @@ export default class ServerRoutes {
   videoList(userToken) {
     return `http://localhost:3000/videos?sessionId=${userToken}`
   }
+  
+  logout(userToken){
+    return `${this._serverIP}/user/logout?sessionId=${userToken}`
+  }
 
   get serverIp() {
     return this._serverIP
@@ -18,4 +22,5 @@ export default class ServerRoutes {
   get auth() {
     return `${this._serverIP}/user/auth/`
   }
+
 }
