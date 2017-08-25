@@ -1,10 +1,11 @@
 import { Component } from 'react'
 import { browserHistory } from 'react-router'
-import { logout } from '../../controllers/SectionActions'
+import SessionActions from '../../controllers/SessionActions'
+const session = new SessionActions()
 
 export default class Logout extends Component {
   componentWillMount() {
-    logout()
+    session.logout()
       .then(success => {
         browserHistory.push('/login')
       })

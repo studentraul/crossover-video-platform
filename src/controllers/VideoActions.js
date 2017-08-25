@@ -1,8 +1,9 @@
 import { browserHistory } from 'react-router'
 import ServerRoutes from '../config/ServerRoutes'
-import { getUserToken } from './SectionActions'
+import SessionActions from './SessionActions'
 
 const routes = new ServerRoutes()
+const session = new SessionActions()
 
 export const openVideoFromId = id => {
   if (id) {
@@ -38,17 +39,17 @@ export const setRating = (videoId, rating) => {
     headers: new Headers({ 'Content-type': 'application/json' }),
   }
 
-  return fetch(routes.doReview(getUserToken()), requestInfo).then(res =>
+  return fetch(routes.doReview(session.userToken), requestInfo).then(res =>
     res.json(),
   )
 }
 
 export const loadVideos = () => {
-  return fetch(routes.videoList(getUserToken())).then(res => res.json())
+  return fetch(routes.videoList(session.userToken)).then(res => res.json())
 }
 
 export const getSingleVideo = videoId => {
-  return fetch(routes.singleVideo(getUserToken(), videoId))
+  return fetch(routes.singleVideo(session.userToken, videoId))
     .then(res => {
       if (res.ok) return res.json()
       else throw new Error('It was not possible to find this video')
@@ -57,9 +58,7 @@ export const getSingleVideo = videoId => {
 }
 
 export const getMoreVideos = (skip, limit) => {
-  const url = routes.videoList(getUserToken(), skip, limit)
-
-  console.log(url)
+  const url = routes.videoList(session.userToken, skip, limit)
   return fetch(url)
     .then(res => {
       if (res.ok) return res.json()

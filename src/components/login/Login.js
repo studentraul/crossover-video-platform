@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 
 import { UserIcon, LockIcon } from '../common/Icons'
 import InputGroup from '../common/InputGroup'
 import ErrorMessage from '../common/ErrorSpan'
 
-import {
-  encryptPassword,
-  setUser,
-  signIn,
-} from '../../controllers/SectionActions'
+import SessionActions from '../../controllers/SessionActions'
 
 import './Login.css'
 
+const session = new SessionActions()
 
 export default class Login extends Component {
   constructor(props) {
@@ -29,9 +25,10 @@ export default class Login extends Component {
     event.preventDefault()
     const { username, password } = this.state
 
-    signIn(username, encryptPassword(password))
+    session
+      .signIn(username, password)
       .then(token => {
-        setUser(token.sessionId, token.username)
+        session.setUser(token.sessionId, token.username)
         browserHistory.push('/')
       })
       .catch(err => {

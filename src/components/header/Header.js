@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import { getUserName } from '../../controllers/SectionActions'
+import SessionActions from '../../controllers/SessionActions'
 import { UserIcon } from '../common/Icons'
 
 import './Header.css'
+
+const session = new SessionActions()
 
 class Logo extends Component {
   render() {
@@ -27,7 +29,7 @@ class UserInfo extends Component {
         <div className="user__infos">
           <UserIcon classList="user__infos__icon" />
           <p className="user__infos__username">
-            {getUserName()}
+            {session.userName}
           </p>
         </div>
         <Link to="/logout" className="user__logout">
