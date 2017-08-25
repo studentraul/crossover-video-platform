@@ -9,8 +9,10 @@ import { Collapse } from 'react-collapse'
 import PubSub from 'pubsub-js'
 
 class Midia extends Component {
+  //This function reload VIDEO element
+  //when it receive a new value
   reload() {
-    this.videoRef ? this.videoRef.load() : null
+    return this.videoRef ? this.videoRef.load() : null
   }
 
   componentDidMount() {
@@ -39,32 +41,15 @@ class Midia extends Component {
   }
 }
 
-class Ratting extends Component {
-  constructor() {
-    super()
-    this.state = {
-      stars: 0,
-    }
-  }
-
-  ratingChanged = newRating => {
-    setRating(this.props.video._id, newRating)
-      .then(success => this.changeRating(newRating))
-      .catch(err => {
-        this.changeRating(0)
-        console.log(err)
-      })
-  }
-
-  changeRating = stars => this.setState({ stars })
-
+class Rating extends Component {
   render() {
+    const { changeRate, rating } = this.props
     return (
       <div className="video-infos__ratings">
         <ReactStars
           count={5}
-          onChange={this.ratingChanged}
-          value={this.state.stars}
+          onChange={changeRate}
+          value={rating}
           half={false}
           size={24}
           color2={'#ffd700'}
@@ -94,12 +79,23 @@ export default class VideoWatch extends Component {
     super(props)
     this.state = {
       video: props.video,
+      rating: 0,
       isOpened: false,
     }
   }
 
+  ratingChanged = newRating => {
+    setRating(this.props.video._id, newRating)
+      .then(success => this.changeRating(newRating))
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  changeRating = rating => this.setState({ rating })
+
   updateVideo(topic, video) {
-    this.setState({ video })
+    this.setState({ video, isOpened: false, rating: 0 })
   }
 
   componentDidMount() {
@@ -112,7 +108,8 @@ export default class VideoWatch extends Component {
   }
 
   render() {
-    const video = this.state.video
+    const { video, rating, isOpened } = this.state
+
     return (
       <div id="VideoWatch">
         <Midia video={video} />
@@ -123,8 +120,12 @@ export default class VideoWatch extends Component {
           >
             {cleanVideoName(video.name)}
           </p>
-          <Ratting video={video} />
-          <Description video={video} isOpened={this.state.isOpened} />
+          <Rating
+            rating={rating}
+            video={video}
+            changeRate={this.ratingChanged}
+          />
+          <Description video={video} isOpened={isOpened} />
         </div>
       </div>
     )

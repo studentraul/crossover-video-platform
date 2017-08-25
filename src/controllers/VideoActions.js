@@ -46,3 +46,24 @@ export const setRating = (videoId, rating) => {
 export const loadVideos = () => {
   return fetch(routes.videoList(getUserToken())).then(res => res.json())
 }
+
+export const getSingleVideo = videoId => {
+  return fetch(routes.singleVideo(getUserToken(), videoId))
+    .then(res => {
+      if (res.ok) return res.json()
+      else throw new Error('It was not possible to find this video')
+    })
+    .then(json => json.data)
+}
+
+export const getMoreVideos = (skip, limit) => {
+  const url = routes.videoList(getUserToken(), skip, limit)
+
+  console.log(url)
+  return fetch(url)
+    .then(res => {
+      if (res.ok) return res.json()
+      else throw new Error('It was not possible to find this video')
+    })
+    .then(json => json.data)
+}

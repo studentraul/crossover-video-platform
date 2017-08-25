@@ -7,12 +7,19 @@ export default class ServerRoutes {
     return `${this._serverIP}/video/ratings?sessionId=${userToken}`
   }
 
-  videoList(userToken) {
-    return `http://localhost:3000/videos?sessionId=${userToken}`
+  videoList(userToken, skip, limit) {
+    return skip && limit
+      ? `${this
+          ._serverIP}/videos?sessionId=${userToken}&skip=${skip}&limit=${limit}`
+      : `http://localhost:3000/videos?sessionId=${userToken}`
   }
-  
-  logout(userToken){
+
+  logout(userToken) {
     return `${this._serverIP}/user/logout?sessionId=${userToken}`
+  }
+
+  singleVideo(userToken, videoId) {
+    return `${this._serverIP}/video?sessionId=${userToken}&videoId=${videoId}`
   }
 
   get serverIp() {
@@ -22,5 +29,4 @@ export default class ServerRoutes {
   get auth() {
     return `${this._serverIP}/user/auth/`
   }
-
 }
