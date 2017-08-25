@@ -10,7 +10,7 @@ export default class Home extends Component {
   constructor() {
     super()
     this.state = { videos: [] }
-  }
+  } 
 
   componentDidMount() {
     loadVideos()
