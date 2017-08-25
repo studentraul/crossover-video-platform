@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import VideoCard from '../common/VideoCard'
-import './Home.css'
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import VideoCard from '../common/VideoCard'
+import { loadVideos } from '../../controllers/VideoActions'
+
+import './Home.css'
 
 export default class Home extends Component {
   constructor() {
@@ -11,9 +13,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('auth-token')
-    fetch(`http://localhost:3000/videos?sessionId=${token}`)
-      .then(res => res.json())
+    loadVideos()
       .then(videos => this.setState({ videos: videos.data }))
       .catch(err => console.log(err))
   }
