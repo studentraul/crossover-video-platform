@@ -24,7 +24,12 @@ export default class InputGroup extends Component {
 
 InputGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
   cssClasses: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  type: PropTypes.string,
+}
+
+InputGroup.defaultProps = {
+  type: 'text',
 }
