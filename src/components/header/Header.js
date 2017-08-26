@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import SessionActions from '../../controllers/SessionActions'
 import { UserIcon } from '../common/Icons'
 
-import './Header.css'
+import PropTypes from 'prop-types'
 
-const session = new SessionActions()
+import './Header.css'
 
 class Logo extends Component {
   render() {
@@ -24,12 +22,13 @@ class Logo extends Component {
 
 class UserInfo extends Component {
   render() {
+    const { username } = this.props
     return (
       <div className="user">
         <div className="user__infos">
           <UserIcon classList="user__infos__icon" />
           <p className="user__infos__username">
-            {session.userName}
+            {username}
           </p>
         </div>
         <Link to="/logout" className="user__logout">
@@ -46,9 +45,17 @@ export default class Header extends Component {
       <header id="Header">
         <div className="container">
           <Logo />
-          <UserInfo />
+          <UserInfo username={this.props.username} />
         </div>
       </header>
     )
   }
+}
+
+Header.propTypes = {
+  username: PropTypes.string
+}
+
+Header.defaultProps = {
+  username: 'user'
 }
