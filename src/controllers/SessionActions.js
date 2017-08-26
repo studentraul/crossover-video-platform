@@ -40,6 +40,7 @@ export default class SessionActions {
   signIn(username, password) {
     const requestInfo = {
       method: 'POST',
+      mode: 'cors',
       body: JSON.stringify({
         username,
         password: this.encryptPassword(password),

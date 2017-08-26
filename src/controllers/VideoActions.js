@@ -22,8 +22,7 @@ export const calculateRating = (ratings = [0]) => {
 
 export const getVideoUrl = url => {
   if (url) {
-    const address = 'http://localhost:3000/'
-    return address + url
+    return routes.videoUrl(url)
   } else {
     throw new Error('Must be a valid url!')
   }
