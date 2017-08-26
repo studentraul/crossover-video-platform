@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import ReactStars from 'react-stars'
+import PropTypes from 'prop-types'
 
 import { truncateString, cleanVideoName } from '../../utils/string'
 import {
+  getVideoUrl,
   openVideoFromId,
   calculateRating,
 } from '../../controllers/VideoActions'
@@ -22,7 +24,7 @@ class VideoHeader extends Component {
 
 class VideoPlayer extends Component {
   render() {
-    const url = this.props.url ? `http://localhost:3000/${this.props.url}` : ''
+    const url = this.props.url ? getVideoUrl(this.props.url) : ''
     return (
       <div className="midia">
         <video className="midia__video">
@@ -81,4 +83,15 @@ export default class VideoHome extends Component {
       </div>
     )
   }
+}
+
+
+VideoHome.propType = {
+  video: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    ratings: PropTypes.array.isRequired,
+    description: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+  }),
 }
