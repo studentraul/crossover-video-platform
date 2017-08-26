@@ -10,6 +10,11 @@
   margin: .5rem;
   cursor: default;
 }
+@media screen and (max-width:663px){
+  #VideoHome {
+    max-width: 100%;
+  }
+}
 
 #VideoHome .title {
   cursor: pointer;

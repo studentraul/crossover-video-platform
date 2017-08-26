@@ -8,8 +8,14 @@
   border: 1px #c4c4c4 solid;
   padding: 1rem;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
+  align-items: stretch;
   cursor: default;
+}
+
+#RelatedVideo .video{
+  margin: 1rem;
 }
 
 #RelatedVideo .midia {
@@ -45,7 +51,8 @@
   }
 
   #RelatedVideo .video{
-    max-width: 30%;
+    min-width: 130px;
+    max-width: 240px;
   }
 
   #RelatedVideo .midia__video{

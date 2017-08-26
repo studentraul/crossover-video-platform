@@ -1,6 +1,7 @@
 #Header {
   --font-color: #ecf0f1;
   width: 100%;
+  min-width: 280px;
   background-color: #34495e;
   color: #ecf0f1;
 }

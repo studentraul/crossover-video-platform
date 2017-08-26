@@ -10,13 +10,13 @@
 
 #WatchVideo .main-video {
   width: 70%;
+  margin: 0 1rem 1rem 1rem ;
   min-width: calc(360px);
 }
 
 @media screen and (max-width: 1360px){
   #WatchVideo {
     width: 100%;
-    padding: 2rem;
   }
 
 
