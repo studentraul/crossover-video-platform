@@ -1,11 +1,31 @@
 export default class ServerRoutes {
   constructor() {
-    this._serverIP = 'http://127.0.0.1:3000'
+    this._serverIP = 'https://crossover-video-platform.herokuapp.com'
   }
 
-  doReview(userId) {
-    return `${this._serverIP}/video/ratings?sessionId=${userId}`
+  videoUrl(url){
+    return `${this._serverIP}/${url}`
   }
+  doReview(userToken) {
+    return `${this._serverIP}/video/ratings?sessionId=${userToken}`
+  }
+
+  videoList(userToken, skip, limit) {
+    return skip && limit
+      ? `${this
+          ._serverIP}/videos?sessionId=${userToken}&skip=${skip}&limit=${limit}`
+      : `${this._serverIP}/videos?sessionId=${userToken}`
+  }
+
+  logout(userToken) {
+    console.log(userToken)
+    return `${this._serverIP}/user/logout?sessionId=${userToken}`
+  }
+
+  singleVideo(userToken, videoId) {
+    return `${this._serverIP}/video?sessionId=${userToken}&videoId=${videoId}`
+  }
+
   get serverIp() {
     return this._serverIP
   }

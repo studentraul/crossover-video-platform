@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import VideoCard from '../common/VideoCard'
-import './Home.css'
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import VideoHome from './VideoHome'
+import { loadVideos } from '../../controllers/VideoActions'
+
+import './Home.css'
 
 export default class Home extends Component {
   constructor() {
     super()
     this.state = { videos: [] }
-  }
+  } 
 
   componentDidMount() {
-    const token = localStorage.getItem('auth-token')
-    fetch(`http://localhost:3000/videos?sessionId=${token}`)
-      .then(res => res.json())
+    loadVideos()
       .then(videos => this.setState({ videos: videos.data }))
       .catch(err => console.log(err))
   }
@@ -28,7 +28,7 @@ export default class Home extends Component {
         transitionLeaveTimeout={300}
       >
         {this.state.videos.map(video =>
-          <VideoCard key={video._id} video={video} />,
+          <VideoHome key={video._id} video={video} />,
         )}
       </ReactCSSTransitionGroup>
     )

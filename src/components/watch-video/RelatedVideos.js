@@ -3,33 +3,44 @@ import ReactStars from 'react-stars'
 import './RelatedVideos.css'
 import { cleanVideoName } from '../../utils/string'
 
-import { openVideoFromId,calculateRating,getVideoUrl } from '../../controllers/VideoActions'
+import {
+  openVideoFromId,
+  calculateRating,
+  getVideoUrl,
+} from '../../controllers/VideoActions'
+
+class Midia extends Component {
+  render() {
+    const { url } = this.props
+    return (
+      <div className="midia">
+        <video className="midia__video">
+          <source src={getVideoUrl(url)} type="video/mp4" />
+        </video>
+      </div>
+    )
+  }
+}
 
 class Video extends Component {
   render() {
-    const video = this.props.video
+    const { _id, url, name, ratings } = this.props.video
 
     const openVideo = () => {
-      openVideoFromId(video._id)
+      openVideoFromId(_id)
     }
+
     return (
-      <div onClick={openVideo} className="video">
-        <div className="midia">
-          <video className="midia__video">
-            <source
-              src={getVideoUrl(video.url)}
-              type="video/mp4"
-            />
-          </video>
-        </div>
+      <div className="video">
+        <Midia url={url} />
         <div className="video-infos">
-          <p className="video-infos__title">
-            {cleanVideoName(video.name)}
+          <p className="video-infos__title" onClick={openVideo}>
+            {cleanVideoName(name)}
           </p>
           <div className="video-infos__ratings">
             <ReactStars
               count={5}
-              value={calculateRating(video.ratings)}
+              value={calculateRating(ratings)}
               size={24}
               edit={false}
               color2={'#ffd700'}
@@ -43,7 +54,8 @@ class Video extends Component {
 
 export default class RelatedVideos extends Component {
   render() {
-    const videos = this.props.videos
+    const { videos } = this.props
+
     return (
       <div id="RelatedVideo">
         {videos.map(video => {

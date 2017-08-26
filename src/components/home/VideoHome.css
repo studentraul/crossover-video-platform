@@ -1,4 +1,4 @@
-#VideoCard {
+#VideoHome {
   font-family: 'Open Sans', sans-serif;
   max-width: 300px;
   background-color: #fff;
@@ -8,10 +8,11 @@
   justify-content: space-between;
   padding: 1rem .5rem;
   margin: .5rem;
-  cursor: pointer;
+  cursor: default;
 }
 
-#VideoCard .title {
+#VideoHome .title {
+  cursor: pointer;
   font-weight: bold;
   margin: .5rem 0;
   text-align: center;
@@ -19,22 +20,22 @@
   font-size: 1rem;
 }
 
-#VideoCard .midia {
+#VideoHome .midia {
   width: 100%;
 }
-#VideoCard .midia__video {
+#VideoHome .midia__video {
   display: block;
   width: 100%;
 }
 
-#VideoCard .infos {
+#VideoHome .infos {
   padding: .6rem;
 }
-#VideoCard infos > * {
+#VideoHome infos > * {
   margin: .5rem 0;
 }
 
-#VideoCard .infos__description {
+#VideoHome .infos__description {
   padding: .4rem 0;
   font-size: .8rem;
 }

@@ -23,12 +23,6 @@
   justify-content: center;
 }
 
-#Login .error-login {
-  color: #e74c3c;
-	margin: 2rem 0;
-	text-align: center;
-}
-
 #Login .logo__text {
 	font-size: 2.5rem;
   text-align: center;
@@ -37,35 +31,6 @@
 
 #Login .form-login {
   width: 100%;
-}
-
-#Login .input-group {
-  border: 1px solid #ebebeb;
-  margin: .5rem .2rem;
-  position: relative;
-}
-
-#Login .input-group .input {
-  background: #fff;
-  border: none;
-  padding: 1em 1.3em;
-  width: 100%;
-  color: #34495e;
-}
-#Login .input-group .input:focus {
-  outline: none;
-}
-
-#Login .input-group .icon {
-  left: 0;
-  margin: .5em;
-  position: absolute;
-	top: 0;
-	fill: #34495e;
-}
-
-#Login .input-group .icon ~ .input {
-  padding-left: 3.4em;
 }
 
 #Login .action {
