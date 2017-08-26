@@ -11,9 +11,10 @@ import './VideoHome.css'
 
 class VideoHeader extends Component {
   render() {
+    const { name, openVideo } = this.props
     return (
-      <h2 className="title">
-        {cleanVideoName(this.props.name)}
+      <h2 className="title" onClick={openVideo}>
+        {cleanVideoName(name)}
       </h2>
     )
   }
@@ -35,7 +36,7 @@ class VideoPlayer extends Component {
 class VideoRating extends Component {
   render() {
     const { ratings } = this.props
-    
+
     return (
       <div className="infos__ratings">
         <ReactStars
@@ -70,8 +71,8 @@ export default class VideoHome extends Component {
     const { name, url, ratings, description } = this.props.video
 
     return (
-      <div id="VideoHome" onClick={this.openVideo.bind(this)}>
-        <VideoHeader name={name} />
+      <div id="VideoHome">
+        <VideoHeader name={name} openVideo={this.openVideo.bind(this)} />
         <VideoPlayer url={url} />
         <div className="infos">
           <VideoRating ratings={ratings} />

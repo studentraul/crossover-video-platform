@@ -8,10 +8,11 @@
   justify-content: space-between;
   padding: 1rem .5rem;
   margin: .5rem;
-  cursor: pointer;
+  cursor: default;
 }
 
 #VideoHome .title {
+  cursor: pointer;
   font-weight: bold;
   margin: .5rem 0;
   text-align: center;

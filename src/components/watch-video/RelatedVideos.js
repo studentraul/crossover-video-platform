@@ -9,6 +9,19 @@ import {
   getVideoUrl,
 } from '../../controllers/VideoActions'
 
+class Midia extends Component {
+  render() {
+    const { url } = this.props
+    return (
+      <div className="midia">
+        <video className="midia__video">
+          <source src={getVideoUrl(url)} type="video/mp4" />
+        </video>
+      </div>
+    )
+  }
+}
+
 class Video extends Component {
   render() {
     const { _id, url, name, ratings } = this.props.video
@@ -18,14 +31,10 @@ class Video extends Component {
     }
 
     return (
-      <div onClick={openVideo} className="video">
-        <div className="midia">
-          <video className="midia__video">
-            <source src={getVideoUrl(url)} type="video/mp4" />
-          </video>
-        </div>
+      <div className="video">
+        <Midia url={url} />
         <div className="video-infos">
-          <p className="video-infos__title">
+          <p className="video-infos__title" onClick={openVideo}>
             {cleanVideoName(name)}
           </p>
           <div className="video-infos__ratings">
