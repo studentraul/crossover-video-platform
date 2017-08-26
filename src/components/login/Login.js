@@ -27,8 +27,10 @@ export default class Login extends Component {
 
     session
       .signIn(username, password)
-      .then(token => {
-        session.setUser(token.sessionId, token.username)
+      .then(response => {
+        if(response.status.toLowerCase() === 'error')
+          throw new Error(response.error)
+        session.setUser(response.sessionId, response.username)
         browserHistory.push('/')
       })
       .catch(err => {

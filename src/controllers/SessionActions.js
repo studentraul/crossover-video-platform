@@ -50,7 +50,7 @@ export default class SessionActions {
 
     return fetch(this._routes.auth, requestInfo).then(res => {
       if (res.ok) return res.json()
-      else throw new Error('User or password invalid! ')
+      else throw new Error('Problem to consult server')
     })
   }
 
@@ -71,5 +71,11 @@ export default class SessionActions {
 
   get username() {
     return localStorage.getItem(this._usernameField)
+  }
+
+  get isValidUser() {
+    return fetch(this._routes.videoList(this.userToken)).then(res => {
+      return res.status === 401 ? false : true
+    })
   }
 }

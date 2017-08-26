@@ -18,7 +18,6 @@ export default class ServerRoutes {
   }
 
   logout(userToken) {
-    console.log(userToken)
     return `${this._serverIP}/user/logout?sessionId=${userToken}`
   }
 
