@@ -68,7 +68,7 @@ export default class SessionActions {
     return localStorage.getItem(this._tokenField)
   }
 
-  get userName() {
+  get username() {
     return localStorage.getItem(this._usernameField)
   }
 }
