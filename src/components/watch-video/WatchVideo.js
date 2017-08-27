@@ -43,7 +43,7 @@ export default class WatchVideo extends Component {
 
   render() {
     return (
-      <main id="WatchVideo">        
+      <main id="WatchVideo">
         <section className="main-video">
           {this.state.video.name
             ? <VideoWatch isOpen={true} video={this.state.video} />
