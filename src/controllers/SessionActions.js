@@ -1,5 +1,5 @@
-const md5 = require('blueimp-md5')
 import ServerRoutes from '../config/ServerRoutes.js'
+const md5 = require('blueimp-md5')
 
 export default class SessionActions {
   constructor() {
