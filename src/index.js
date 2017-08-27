@@ -16,9 +16,12 @@ async function verifySection(nextState, replace, callback) {
   const session = new SessionActions()
 
   try {
-    const res = await session.isValidUser
-    if (session.userToken && !res) throw new Error('Invalid user')
-  } catch (error) {
+    const isValidUser = await session.isValidUser
+    if (session.userToken && !isValidUser) {
+      session.cleanUserSession()
+      throw new Error('Invalid user')
+    }
+  } catch (err) {
     replace('/login?msg=You must have been logged to access this content!')
   } finally {
     callback()
