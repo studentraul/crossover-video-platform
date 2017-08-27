@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import ReactStars from 'react-stars'
-import { cleanVideoName } from '../../utils/string'
-import { getVideoUrl, setRating } from '../../controllers/VideoActions'
-import './VideoWatch.css'
-
+import PubSub from 'pubsub-js'
+import PropTypes from 'prop-types'
 import { Collapse } from 'react-collapse'
 
-import PubSub from 'pubsub-js'
+import { cleanVideoName } from '../../utils/string'
+import { getVideoUrl, setRating } from '../../controllers/VideoActions'
+
+import './VideoWatch.css'
 
 class Midia extends Component {
-  //This function reload VIDEO element
-  //when it receive a new value
   reload() {
+    /*
+    This function reload VIDEO element when it receive a new value
+  */
     return this.videoRef ? this.videoRef.load() : null
   }
 
@@ -79,8 +81,8 @@ export default class VideoWatch extends Component {
     super(props)
     this.state = {
       video: props.video,
-      rating: 0,
-      isOpened: false,
+      isOpened: props.isOpened,
+      rating: props.rating,
     }
   }
 
@@ -108,7 +110,8 @@ export default class VideoWatch extends Component {
   }
 
   render() {
-    const { video, rating, isOpened } = this.state
+    const { video } = this.props
+    const { rating, isOpened } = this.state
 
     return (
       <div id="VideoWatch">
@@ -130,4 +133,26 @@ export default class VideoWatch extends Component {
       </div>
     )
   }
+}
+
+VideoWatch.defaultProps = {
+  video: {
+    _id: '',
+    name: '',
+    url: '',
+    description: '',
+    ratings: [],
+  },
+  rating: 0,
+  isOpened: false,
+}
+
+VideoWatch.propTypes = {
+  video: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    ratings: PropTypes.array.isRequired,
+    description: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+  }).isRequired,
 }
