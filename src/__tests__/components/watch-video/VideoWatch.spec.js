@@ -18,7 +18,7 @@ describe('<VideoWatch />', () => {
     expect(component).toHaveLength(1)
   })
 
-  test('Default Props', () => {
+  describe('Default Props', () => {
     const component = shallow(<VideoWatch />)
 
     it('should had default prop "rating" equals 0', () => {

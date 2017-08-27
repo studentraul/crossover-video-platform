@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import ReactStars from 'react-stars'
-import './RelatedVideos.css'
-import { cleanVideoName } from '../../utils/string'
+import PropTypes from 'prop-types'
 
+import { cleanVideoName } from '../../utils/string'
 import {
   openVideoFromId,
   calculateRating,
   getVideoUrl,
 } from '../../controllers/VideoActions'
+
+import './RelatedVideos.css'
 
 class Midia extends Component {
   render() {
@@ -51,6 +53,15 @@ class Video extends Component {
     )
   }
 }
+Video.propTypes = {
+  video: PropTypes.shape({
+    name: PropTypes.string,
+    url: PropTypes.string,
+    ratings: PropTypes.array,
+    description: PropTypes.string,
+    _id: PropTypes.string,
+  }).isRequired,
+}
 
 export default class RelatedVideos extends Component {
   render() {
@@ -64,4 +75,12 @@ export default class RelatedVideos extends Component {
       </div>
     )
   }
+}
+
+RelatedVideos.propTypes = {
+  videos: PropTypes.array.isRequired,
+}
+
+RelatedVideos.defaultProps = {
+  videos: [],
 }

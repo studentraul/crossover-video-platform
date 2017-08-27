@@ -2,10 +2,11 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
 
-import VideoHome from '../../../components/home/VideoHome'
+import Home from '../../../components/home/Home'
 
-describe('<VideoHome />', () => {
+describe('<Home />', () => {
   it('should render a VideoHome component', () => {
-    expect(true).toBeTruthy()
+    const component = shallow(<Home/>)
+    expect(component.length).toBe(1)
   })
 })
