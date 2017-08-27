@@ -46,7 +46,7 @@ You can choose any of the frameworks below to develop your client app:
 - [X] 7. Users should be able to rate videos, an overall rating for each video should also be displayed.
 - [X] 8. Users should be able to open the video details page by clicking on video title.
 - [X] 9. REST API should be consumed.
-- [ ] 10. Unit tests with at least 50% code coverage should be provided.
+- [x] 10. Unit tests with at least 50% code coverage should be provided.
 
 ## Non-Functional Requirements
 - [ ] 1. Code should be well documented by comments.
