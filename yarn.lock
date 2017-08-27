@@ -1609,6 +1609,10 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
+core-js@^0.8.3:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-0.8.4.tgz#c22665f1e0d1b9c3c5e1b08dabd1f108695e4fcf"
+
 core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
@@ -3659,6 +3663,12 @@ jest-environment-node@^20.0.3:
     jest-mock "^20.0.3"
     jest-util "^20.0.3"
 
+jest-fetch-mock@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.2.1.tgz#5fcf54583a53cf987b10c626f0d684fe353725f2"
+  dependencies:
+    whatwg-fetch "1.0.0"
+
 jest-haste-map@^20.0.4:
   version "20.0.5"
   resolved "https://registry.yarnpkg.com/jest-haste-map/-/jest-haste-map-20.0.5.tgz#abad74efb1a005974a7b6517e11010709cab9112"
@@ -4304,6 +4314,12 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+mock-local-storage@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/mock-local-storage/-/mock-local-storage-1.0.4.tgz#ffb35defc47beb0d09bdea19028464e651018ee7"
+  dependencies:
+    core-js "^0.8.3"
 
 ms@2.0.0:
   version "2.0.0"
@@ -6679,6 +6695,10 @@ whatwg-encoding@^1.0.1:
   resolved "https://registry.yarnpkg.com/whatwg-encoding/-/whatwg-encoding-1.0.1.tgz#3c6c451a198ee7aec55b1ec61d0920c67801a5f4"
   dependencies:
     iconv-lite "0.4.13"
+
+whatwg-fetch@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.0.0.tgz#01c2ac4df40e236aaa18480e3be74bd5c8eb798e"
 
 whatwg-fetch@2.0.3, whatwg-fetch@>=0.10.0:
   version "2.0.3"
