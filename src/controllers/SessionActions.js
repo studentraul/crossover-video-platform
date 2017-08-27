@@ -1,4 +1,4 @@
-import * as md5 from 'blueimp-md5'
+const md5 = require('blueimp-md5')
 import ServerRoutes from '../config/ServerRoutes.js'
 
 export default class SessionActions {
@@ -8,24 +8,29 @@ export default class SessionActions {
     this._routes = new ServerRoutes()
   }
 
-  cleanUserSession() {
+  _cleanUserSession() {
     localStorage.removeItem(this._tokenField)
     localStorage.removeItem(this._usernameField)
   }
 
   encryptPassword(password) {
+    if (!password) throw new Error('Password is required')
     return md5(password)
   }
 
   saveUserSession(token, username) {
+    if (!token) throw new Error('token is required')
+    if (!username) throw new Error('username is required')
+
     localStorage.setItem(this._tokenField, token)
     localStorage.setItem(this._usernameField, username)
   }
 
   setUser(token, username) {
     try {
-      if (!token) throw new Error('Empty Token')
-      if (!username) throw new Error('Empty username')
+      if (!token && !username) throw new Error('Token and Username is required')
+      else if (!token) throw new Error('Token is required')
+      else if (!username) throw new Error('Username is required')
 
       this.saveUserSession(token, username)
       return {
@@ -38,6 +43,11 @@ export default class SessionActions {
   }
 
   signIn(username, password) {
+    if (!username && !password)
+      throw new Error('Username and Password is required')
+    else if (!username) throw new Error('Username is required')
+    else if (!password) throw new Error('Password is required')
+
     const requestInfo = {
       method: 'POST',
       mode: 'cors',
@@ -57,7 +67,7 @@ export default class SessionActions {
   logout = () => {
     return fetch(this._routes.logout(this.userToken)).then(res => {
       if (res.ok) {
-        this.cleanUserSession()
+        this._cleanUserSession()
         return res
       } else {
         throw new Error('It was not possible to logout')
