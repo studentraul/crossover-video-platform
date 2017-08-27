@@ -50,10 +50,10 @@ You can choose any of the frameworks below to develop your client app:
 
 ## Non-Functional Requirements
 - [ ] 1. Code should be well documented by comments.
-- [ ] 2. Exception handling should be done, where necessary.
+- [x] 2. Exception handling should be done, where necessary.
 - [x] 3. Code should be well organized into files and folders.
 - [X] 4. UI design should be clean and polished.
-- [ ] 5. CSS animations should be used to make the application more appealing.
+- [x] 5. CSS animations should be used to make the application more appealing.
 - [X] 6. UI should be cross-browser compatible.
 - [X] 7. UI should be cross-device compatible.
 
