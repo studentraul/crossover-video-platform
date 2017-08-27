@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorSpan from '../../components/common/ErrorSpan'
+import ErrorSpan from '../../../components/common/ErrorSpan'
 
 import { shallow } from 'enzyme'
 
@@ -8,7 +8,7 @@ describe('<ErrorSpan />', () => {
         const component = shallow(<ErrorSpan />)
         expect(component).toHaveLength(1)
     })
-    
+
      it('should receive "message" as props',() => {
         const component = shallow(<ErrorSpan message="Error message"/>)
         expect(component.instance().props.message).toBe('Error message')

@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserIcon, LockIcon } from '../../components/common/Icons'
+import { UserIcon, LockIcon } from '../../../components/common/Icons'
 
 import { shallow, mount } from 'enzyme'
 

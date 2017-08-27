@@ -1,5 +1,5 @@
 import React from 'react'
-import InputGroup from '../../components/common/InputGroup'
+import InputGroup from '../../../components/common/InputGroup'
 
 import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
